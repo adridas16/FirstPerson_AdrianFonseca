@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,18 +9,76 @@ public class Enemigo : MonoBehaviour
 {
     private NavMeshAgent agent;
     private FirstPerson player;
+    private Animator anim;
+    private bool ventanaAbierta=false;
+    [SerializeField] Transform Attackpoint;
+    [SerializeField] float RadioAtaque=1f;
+    [SerializeField] LayerMask queEsDanable;
+    [SerializeField] int danhoAtaque = 5;
     
     // Start is called before the first frame update
     void Start()
     {
-        agent=GetComponent<NavMeshAgent>();  
-        player= GameObject.FindObjectOfType<FirstPerson>();
+        agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindObjectOfType<FirstPerson>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        perseguir();
+        if(ventanaAbierta)
+        {
+            DetectarJugador();
+        }
+
+    }
+        
+    private void DetectarJugador()
+    {
+        Collider[] colliderDetectados = Physics.OverlapSphere(Attackpoint.position, RadioAtaque, queEsDanable);
+        // si al menos hemos detectado 1 colider...
+        if (colliderDetectados.Length > 0)
+        {
+            for (int i = 0; i < colliderDetectados.Length; i++) 
+            {
+                colliderDetectados[i].GetComponent<FirstPerson>().RecibirDanho(danhoAtaque);
+                
+            }
+        }
+    }
+
+    //funciona con evento de animacion
+    private void perseguir()
+    {
         //Tengo que definir como destino la posicion del player
         agent.SetDestination(player.transform.position);
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            //me paro
+            agent.isStopped = true;
+            //activar la animacion de ataque
+            anim.SetBool("attacking", true);
+
+        }
+    }
+    private void FinAtaque()
+    {
+        //cuando termino animacion me muevo
+        anim.SetBool("attacking", false);
+        agent.isStopped = false;
+    }
+    private void AbrirVentanaAtaque()
+    {
+        ventanaAbierta = true;
+    }
+    private void CerrarVentanaAtaque()
+    {
+        ventanaAbierta = false;
+    } 
+    public void AtaqueAlPlayer(int danhoAtaque)
+    {
+
     }
 }

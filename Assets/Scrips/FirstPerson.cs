@@ -16,6 +16,7 @@ public class FirstPerson : MonoBehaviour
     private float velocidadRotacion;
     private Camera cam;
     private Animator anim;
+    [SerializeField] private int vidas;
 
 
 
@@ -74,6 +75,13 @@ public class FirstPerson : MonoBehaviour
             Saltar();
         }
 
+    }
+
+
+
+    public void RecibirDanho(int danhoRecibido)
+    {
+        vidas -= 5;
     }
 
     //sirve para dibujar figuras en la escena
