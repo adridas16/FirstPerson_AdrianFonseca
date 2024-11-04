@@ -81,7 +81,7 @@ public class FirstPerson : MonoBehaviour
 
     public void RecibirDanho(int danhoRecibido)
     {
-        vidas -= 5;
+        
     }
 
     //sirve para dibujar figuras en la escena

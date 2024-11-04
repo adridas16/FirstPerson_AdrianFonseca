@@ -14,8 +14,8 @@ public class Enemigo : MonoBehaviour
     [SerializeField] Transform Attackpoint;
     [SerializeField] float RadioAtaque=1f;
     [SerializeField] LayerMask queEsDanable;
-    [SerializeField] int danhoAtaque = 5;
-    
+    [SerializeField] int danhoAtaque = 25;
+    private bool danhoRealizado=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +28,7 @@ public class Enemigo : MonoBehaviour
     void Update()
     {
         perseguir();
-        if(ventanaAbierta)
+        if(ventanaAbierta&& !danhoRealizado)
         {
             DetectarJugador();
         }
@@ -46,6 +46,7 @@ public class Enemigo : MonoBehaviour
                 colliderDetectados[i].GetComponent<FirstPerson>().RecibirDanho(danhoAtaque);
                 
             }
+            danhoRealizado=true;
         }
     }
 
@@ -68,6 +69,7 @@ public class Enemigo : MonoBehaviour
         //cuando termino animacion me muevo
         anim.SetBool("attacking", false);
         agent.isStopped = false;
+        danhoRealizado=false;
     }
     private void AbrirVentanaAtaque()
     {

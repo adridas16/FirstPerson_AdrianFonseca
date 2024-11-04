@@ -775,12 +775,6 @@ Transform:
   - {fileID: 1002768267}
   m_Father: {fileID: 1432045230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &991704864 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1022961041765009126, guid: 39edbc42825fe304ba5bb89d15926304,
-    type: 3}
-  m_PrefabInstance: {fileID: 3523745204485199714}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002768266
 GameObject:
   m_ObjectHideFlags: 3
@@ -2282,7 +2276,7 @@ MonoBehaviour:
   escalaGravedad: -9.81
   velocidadMovimiento: 5
   altudaSalto: 1.5
-  vidas: 0
+  vidas: 100
 --- !u!4 &1031632035015478984
 Transform:
   m_ObjectHideFlags: 0
@@ -3291,11 +3285,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mremireh O Desbiens
       objectReference: {fileID: 0}
-    - target: {fileID: 9082437952852388154, guid: 39edbc42825fe304ba5bb89d15926304,
-        type: 3}
-      propertyPath: Attackpoint
-      value: 
-      objectReference: {fileID: 991704864}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
