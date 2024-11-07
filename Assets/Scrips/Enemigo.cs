@@ -16,6 +16,8 @@ public class Enemigo : MonoBehaviour
     [SerializeField] LayerMask queEsDanable;
     [SerializeField] int danhoAtaque = 25;
     private bool danhoRealizado=false;
+    [SerializeField]private float vidas;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -82,5 +84,13 @@ public class Enemigo : MonoBehaviour
     public void AtaqueAlPlayer(int danhoAtaque)
     {
 
+    }
+    public void RecibirDanho(float danhorecibido)
+    {
+        vidas -= danhorecibido;
+        if (vidas <= 0) 
+        {
+            Destroy(gameObject);
+        }
     }
 }

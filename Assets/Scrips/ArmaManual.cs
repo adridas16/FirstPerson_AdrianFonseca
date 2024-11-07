@@ -1,14 +1,20 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class ArmaManual : MonoBehaviour
 {
-    [SerializeField] ParticleSystem system;
+    [SerializeField] private ParticleSystem system;
+    [SerializeField] private ArmaSo misDatos;
+    private Camera cam;
+    [SerializeField] GameObject enemigo;
     // Start is called before the first frame update
     void Start()
     {
-       
+       cam=Camera.main;
+      
     }
 
     // Update is called once per frame
@@ -18,6 +24,14 @@ public class ArmaManual : MonoBehaviour
         {
             system.Play();
             Debug.Log("pium");
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitinfo, misDatos.distanciaAtaque))
+            {
+
+                Debug.Log(hitinfo.transform.name);
+                hitinfo.transform.GetComponent<Enemigo>().RecibirDanho(misDatos.danhoAtaque);
+            }
         }
+        
     }
+    
 }
