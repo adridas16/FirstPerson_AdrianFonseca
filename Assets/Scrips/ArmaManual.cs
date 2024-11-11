@@ -26,9 +26,12 @@ public class ArmaManual : MonoBehaviour
             Debug.Log("pium");
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitinfo, misDatos.distanciaAtaque))
             {
-
-                Debug.Log(hitinfo.transform.name);
-                hitinfo.transform.GetComponent<Enemigo>().RecibirDanho(misDatos.danhoAtaque);
+                if (hitinfo.transform.CompareTag("ParteEnemigo"))
+                {
+                    Debug.Log(hitinfo.transform.name);
+                    hitinfo.transform.GetComponent<ParteDeEnemigo>().RecibirDanho(misDatos.danhoAtaque);
+                }
+               
             }
         }
         
