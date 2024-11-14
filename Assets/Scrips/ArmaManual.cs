@@ -9,11 +9,12 @@ public class ArmaManual : MonoBehaviour
     [SerializeField] private ParticleSystem system;
     [SerializeField] private ArmaSo misDatos;
     private Camera cam;
-    [SerializeField] GameObject enemigo;
+   
     // Start is called before the first frame update
     void Start()
     {
-       cam=Camera.main;
+       
+        cam=Camera.main;
       
     }
 

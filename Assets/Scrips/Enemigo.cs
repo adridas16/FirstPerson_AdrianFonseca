@@ -83,7 +83,9 @@ public class Enemigo : MonoBehaviour
     {
         //Tengo que definir como destino la posicion del player
         agent.SetDestination(player.transform.position);
-        if (agent.remainingDistance <= agent.stoppingDistance)
+
+        //Si no hay calculos Pendientes para saber donde esta mi objetivo
+        if (!agent.pathPending  && agent.remainingDistance <= agent.stoppingDistance)
         {
             //me paro
             agent.isStopped = true;

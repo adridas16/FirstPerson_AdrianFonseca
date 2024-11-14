@@ -10,9 +10,20 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         //saca una copia de un enemigo en el punto 0 con rotacion0,0,0.
-        Instantiate(enemigoprefab, puntosSpawn[0].position, Quaternion.identity);
+        StartCoroutine(Spawn());
     }
-   
+
+    private IEnumerator Spawn()
+    {
+        while (true)
+        {
+            Instantiate(enemigoprefab, puntosSpawn[Random.Range(0,puntosSpawn.Length)].position, Quaternion.identity);
+            yield return new WaitForSeconds(2);
+
+        }
+
+
+    }
    
 
 }
