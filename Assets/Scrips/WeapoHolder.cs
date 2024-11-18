@@ -14,34 +14,57 @@ public class WeapoHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-       
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        CambiarArmaConTeclado();
+        CambiarArmaConRaton();
+
+    }
+
+    private void CambiarArmaConTeclado()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             CambioArma(0);
-            
+
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
             CambioArma(1);
 
-        } 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
         {
             CambioArma(2);
 
         }
-
     }
+    void CambiarArmaConRaton()
+    {
+        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+        Debug.Log(scrollWheel);
+        if (scrollWheel > 0) //Anterior
+        {
+            CambioArma(indicearmaActual-1);
+        }
+        else if(scrollWheel < 0)//siguiente  
+        {
+            CambioArma(indicearmaActual + 1);
+        }
+    }
+
     void CambioArma(int nuevoArma)
     {
         //desactivo el amra que actualmente llevo equipada
-        weapons[indicearmaActual].SetActive(false);
+      
+        if (nuevoArma<weapons.Length&&nuevoArma>=0)
+        {
+            weapons[indicearmaActual].SetActive(false);
 
+            indicearmaActual = nuevoArma;
+
+            weapons[indicearmaActual].SetActive(true);
+        }
         //despues, cambio el indice
-        indicearmaActual = nuevoArma;
-
-        weapons[indicearmaActual].SetActive(true);
+        
     }
     
     
