@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 using UnityEngine.UI;
+
 
 public class Enemigo : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class Enemigo : MonoBehaviour
     private bool danhoRealizado=false;
     [SerializeField]private float vidas;
     private Rigidbody[] huesos;
-
+    
     public float Vidas { get => vidas; set => vidas = value; }
 
     // Start is called before the first frame update
@@ -91,9 +93,20 @@ public class Enemigo : MonoBehaviour
             agent.isStopped = true;
             //activar la animacion de ataque
             anim.SetBool("attacking", true);
-
+            EnfocarPlayer();
         }
     }
+
+    private void EnfocarPlayer()
+    {
+        //calculo al vector que enfoque al jugador
+        Vector3 direccionAPlayer = (player.transform.position - transform.position).normalized;
+        //me aseguro que no vuelque el enemigo al player
+        direccionAPlayer.y= 0;
+        //calcula la rotacion a la que me tengo que girar para orientarme en esa direccion
+        transform.rotation=Quaternion.LookRotation(direccionAPlayer);
+    }
+
     private void FinAtaque()
     {
         //cuando termino animacion me muevo
@@ -113,6 +126,7 @@ public class Enemigo : MonoBehaviour
     {
 
     }
+   
     
     
 }
