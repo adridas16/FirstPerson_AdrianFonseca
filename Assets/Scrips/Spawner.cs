@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             Instantiate(enemigoprefab, puntosSpawn[Random.Range(0,puntosSpawn.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4);
 
         }
 

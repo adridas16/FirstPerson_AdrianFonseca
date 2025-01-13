@@ -17,6 +17,9 @@ public class FirstPerson : MonoBehaviour
     private Camera cam;
     private Animator anim;
     [SerializeField] private int vidas;
+    [SerializeField] GameObject canMuerte;
+    [SerializeField] GameObject canPause;
+
 
 
 
@@ -25,6 +28,7 @@ public class FirstPerson : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false; 
         Controller = GetComponent<CharacterController>();
@@ -35,6 +39,8 @@ public class FirstPerson : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        muerte();
+        Parar();
         float h = Input.GetAxisRaw("Horizontal"); //h=0, h=-1,h=1
         float v = Input.GetAxisRaw("Vertical");
         Vector2 input = new Vector2(h, v).normalized;
@@ -89,7 +95,7 @@ public class FirstPerson : MonoBehaviour
 
     public void RecibirDanho(int danhoRecibido)
     {
-        
+        vidas -= danhoRecibido;
     }
 
     //sirve para dibujar figuras en la escena
@@ -101,9 +107,33 @@ public class FirstPerson : MonoBehaviour
 
     private void Saltar()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&Time.timeScale>0.1f)
         {
             MovimientoVertical.y = Mathf.Sqrt(-2 * escalaGravedad * altudaSalto);
         }
     }
+    private void muerte()
+    {
+        if (vidas <= 0)
+        {
+            Cursor.visible = true;
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            canMuerte.SetActive(true);
+            
+        }
+    }
+    private void Parar()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)&&Time.timeScale>0.1f)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            canPause.SetActive(true);
+            Time.timeScale = 0;
+            
+        }
+    }
+    
+
 }
