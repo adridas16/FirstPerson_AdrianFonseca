@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FirstPerson : MonoBehaviour
@@ -19,6 +20,7 @@ public class FirstPerson : MonoBehaviour
     [SerializeField] private int vidas;
     [SerializeField] GameObject canMuerte;
     [SerializeField] GameObject canPause;
+    [SerializeField] TMP_Text vidastext;
 
 
 
@@ -39,6 +41,7 @@ public class FirstPerson : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vidas();
         muerte();
         Parar();
         float h = Input.GetAxisRaw("Horizontal"); //h=0, h=-1,h=1
@@ -133,6 +136,10 @@ public class FirstPerson : MonoBehaviour
             Time.timeScale = 0;
             
         }
+    }
+    private void Vidas()
+    {
+        vidastext.SetText("Vida: " + vidas);
     }
     
 
