@@ -40,7 +40,7 @@ public class ArmaAutomatica : MonoBehaviour
                 anim.SetBool("Recargar", false);
                 if (Input.GetMouseButton(0) && timer > misDatos.cadenciaAtaque)
                 {
-                    balas -= 1;
+                    balas --;
                     system.Play();
                     Debug.Log("pium");
                     timer = 0f;
