@@ -12091,7 +12091,7 @@ RectTransform:
   m_GameObject: {fileID: 695493848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.65140176, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1009376845}
@@ -12099,7 +12099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 300.75156, y: -183.73102}
+  m_AnchoredPosition: {x: 300.75156, y: -188.9}
   m_SizeDelta: {x: -601.5031, y: -367.462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695493850
@@ -35485,7 +35485,7 @@ MonoBehaviour:
   m_VerticalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 80000
+    m_MaxSpeed: 1000
     m_AccelTime: 0.1
     m_DecelTime: 0
     m_InputAxisName: Mouse Y
@@ -35509,7 +35509,7 @@ MonoBehaviour:
   m_HorizontalAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 80000
+    m_MaxSpeed: 1000
     m_AccelTime: 0.1
     m_DecelTime: 0
     m_InputAxisName: Mouse X
